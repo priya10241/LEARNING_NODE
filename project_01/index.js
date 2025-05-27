@@ -9,6 +9,17 @@ const PORT = 8000;
 //MIDDLEWARE - PLUGIN
 app.use(express.urlencoded({extended: false}));
 
+
+// DECLARING CUSTOM MIDDLEWARE
+app.use((req,res,next)=>{
+    /* // to send response to client
+    return res.json("Hello from middleware");
+    */
+
+   // to call next function or next middleware
+    next();
+})
+
 //ROUTES
 app.get('/users', (req, res)=>{
     const html = 
@@ -18,7 +29,9 @@ app.get('/users', (req, res)=>{
 
 //REST API
 app.get('/api/users', (req, res)=>{
-     res.json(users);
+    // setting custom header
+    // res.setHeader('X-myHeader', "abcdefghu");
+    res.json(users);
 });
 
 app.get('/api/users/:id', (req,res)=>{
@@ -33,7 +46,7 @@ app.post('/api/users', (req,res)=>{
     console.log("Data : ", data , " id: " , (users.length+1));
     users.push({id : (users.length + 1),...data});
     fs.writeFile('./MOCK_DATA.json', JSON.stringify(users), (err,data)=>{
-        return res.json({ status : "success", id : users.length});
+        return res.status(201).json({ status : "success", id : users.length});
     });
 });
 
