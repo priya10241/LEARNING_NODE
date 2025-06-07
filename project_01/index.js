@@ -6,6 +6,50 @@ const users = require('./MOCK_DATA.json');
 
 const PORT = 8000;
 
+
+//DATABASE CONNECTION START
+
+
+// Including mongoose
+const mongoose = require('mongoose');
+
+
+//connection
+mongoose
+.connect("mongodb://127.0.0.1:27017/first_database")
+.then(()=> console.log("MongoDB Connected"))
+.catch((err)=>console.log("error in mongoDB Connection", err));
+
+
+//create schema
+const userSchema = new mongoose.Schema({
+    firstName : {
+        type : String,
+        required : true
+    },
+    lastName : {
+        type : String
+    },
+    email : {
+        type : String,
+        required : true,
+        unique : true
+    },
+    jobTittle : {
+        type : String
+    },
+    gender : {
+        type : String
+    }
+})
+
+//create model 
+const User = mongoose.model("user", userSchema);
+
+
+
+//DATABASE CONNECTION END
+
 //MIDDLEWARE - PLUGIN
 app.use(express.urlencoded({extended: false}));
 
@@ -82,3 +126,5 @@ app.delete('/api/users/:id',(req,res)=>{
 });
 
 app.listen(PORT , ()=>console.log("Server Started!"));
+
+
