@@ -29,7 +29,7 @@ async function createNewUser(req, res){
             return res.status(400).json({message : "All fields are required"});
         }
         else{
-            const result = await User.create({
+            const result = await User.create({ 
                 firstName : body.firstName,
                 lastName : body.lastName,
                 email : body.email,
@@ -37,7 +37,7 @@ async function createNewUser(req, res){
                 gender : body.gender 
             });
             // console.log("User added: ", result);
-            return res.status(201).json({message : "success", id : _id});
+            return res.status(201).json({message : "success", result : result});
         }
 }
 module.exports = { handleGetAllUsers , getUserWithId, updateUserById, deleteUserById, createNewUser}
