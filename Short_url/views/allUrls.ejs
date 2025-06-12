@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            margin-top : 40px;
+            background-color: rgb(18, 141, 125);
+            font-size: medium;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            color: #ffffff;
+            text-align: center;
+            border-radius: 5%;
+        }
+        table, th, tr{
+            border: 1px solid rgb(183, 215, 218);
+        }
+        tr,th{
+            padding-top : 2px;
+            padding-bottom: 2px;
+            padding-left: 4px;
+            padding-right: 4px;
+        }
+    </style>
+</head>
+<body>
+    <h1>All Urls</h1>
+    <br>
+    <table>
+        <tr>
+        <th>Original Url</th>
+        <th>Generated Url</th>
+        </tr>
+        <% allUrls.forEach(url => { %>
+            <tr>
+            <th><%= url.redirectUrl %></th>
+            <th>localhost:8000/url/<%= url.shortId %></th>
+            </tr>
+        <% }) %>
+     </table>
+</body>
+</html>
