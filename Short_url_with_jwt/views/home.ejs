@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body{
+            background-color: rgb(18, 141, 125);
+            font-size: medium;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            color: #ffffff;
+            text-align: center;
+            border-radius: 5%;
+        }
+    </style>
+    <script>
+        function copyToClipboard(element){
+            const inputField = document.getElementById(element);
+            inputField.select();
+            inputField.setSelectionRange(0, 99999); // For mobile devices
+            document.execCommand("copy");
+        }
+    </script>
+</head>
+<body>
+    <h1> URL SHORTENER</h1>
+    <form method="POST" action="/url">
+        <div style="font-size:large; border-radius:5%; margin-top : 5px">
+        <label> Enter original url: </label>
+        <input type="text" name="url" placeholder="https://example.com" style="padding:7px; border:1px solid black;width : 300px">
+        <br><br>
+        <button type="submit" style="background-color:rgb(7, 48, 48); border:2px solid white;font-style:bold;color:#ffffff;font-size:large;border-radius:5%;padding:5px">Generate</button>
+        </div>
+    </form>
+    <br>
+    <% if(locals.generatedUrl){
+        %>
+        <label style="font-size:large;margin-top : 5px">Generated Url: </label>
+        <input style="padding: 10px ;font-size:large;width:300px;border-radius:5px;" onclick='copyToClipboard("urln")' id="urln" readonly value = <%=locals.generatedUrl %> >
+        <%
+    } %>
+    <br>
+
+    <form method="GET" action="/url">
+        <button onclick="submit" style="background-color:rgb(7, 48, 48); border:2px solid white;font-style:bold;color:#ffffff;font-size:large;border-radius:5%;padding:5px"> Get All Urls</button> 
+    </form>
+
+    
+</body>
+</html>
