@@ -5,11 +5,19 @@ const app = express();
 const PORT = 8000;
 const path = require('path');
 const staticRoute = require('./routes/StaticRouter');
+const userRoute = require('./routes/user')
+const cookieParser = require('cookie-parser');
+const {restrictToLoggedInUserOnly} = require('./Middleware/auth');
 
 app.use(express.urlencoded({extended: false}));
 app.use(express.json());
-app.use('/url',urlRouter);
+app.use(cookieParser())
+
+
+//routes
 app.use('/', staticRoute);
+app.use('/user', userRoute);
+app.use('/url',restrictToLoggedInUserOnly,urlRouter);
 
 
 //setting view engine

@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signup Page</title>
+    <style>
+        body{
+            background-color: rgb(18, 141, 125);
+            font-size: large;
+            font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+            color: #ffffff;
+            text-align: center;
+            border-radius: 5%;
+        }
+        input{
+            background-color: #ffffff;
+            font-size: large;
+            padding: 5px;
+            border-radius: 5%;
+            color: #000;
+        }
+        label{
+            font-size: large;
+        }
+        button{
+            background-color: rgb(17, 95, 95);
+            color:#ffffff;
+            border: 1px solid white;
+            border-radius: 5%;
+            font-size: large;
+            padding: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Sign Up</h1>
+    <form method="post" action="/user">
+        <label>Name</label>
+        <input type="text" required name="name" >
+        <br><br>
+        <label>Email</label> 
+        <input type="email" required  name="email" >
+        <br><br>
+        <label>Password</label>
+        <input type="password" required  name="password">
+        <br><br>
+        <button type="submit" >Submit</button>
+    </form>
+
+    <% if (locals.error) { %>
+        <h3 style="color:rgb(255, 238, 238)"><%= locals.error %></h3>
+    <% } %>
+</body>
+</html>
