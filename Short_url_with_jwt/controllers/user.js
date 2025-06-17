@@ -29,11 +29,11 @@ async function handleUserLogin(req,res){
         const token = setUser(user);
 
         //using cookies to pass token
-        // res.cookie('uid', token);
-        // res.redirect("/");
+        res.cookie('token', token);
+        res.redirect("/");
 
         //using headers to pass token 
-        return res.json({token});
+        // return res.json({token});
     }
 }
 

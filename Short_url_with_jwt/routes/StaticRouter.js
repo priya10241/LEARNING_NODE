@@ -3,8 +3,7 @@ const URL = require('../models/Url');
 const router = express.Router();
 
 router.get('/', async (req,res)=>{
-    const result = await URL.find({});
-    return res.render('home', {"allUrls" : result});
+    return res.render('home');
 })
 
 router.get("/signup", (req,res)=>{
@@ -14,4 +13,5 @@ router.get("/signup", (req,res)=>{
 router.get("/login", (req,res)=>{
     res.render("login")
 })
+
 module.exports = router;

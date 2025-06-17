@@ -41,11 +41,15 @@ async function handleRedirectToUrl(req, res){
 }
 
 
-async function handleAllUrls(req,res){
+async function handleUserUrls(req,res){
     const user = req.user._id;
-    console.log(user);
     const allUrls = await URL.find({createdBy : user});
     return res.render('allUrls',{"allUrls" : allUrls});
 }
 
-module.exports = { handleGenerateNewShortUrl , handleAnalytics, handleRedirectToUrl, handleAllUrls};
+async function handleAllUrls(req,res){
+    const allUrls = await URL.find({});
+    return res.render('allUrls',{"allUrls" : allUrls});
+}
+
+module.exports = { handleGenerateNewShortUrl , handleAnalytics, handleRedirectToUrl, handleUserUrls, handleAllUrls};
