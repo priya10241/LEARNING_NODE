@@ -1,7 +1,7 @@
 const express = require('express');
 const multer = require('multer');
 const path = require('path');
-const staticRouter = require('./routes/staticRouter')
+const staticRouter = require('./routes/staticRouter');
 const app = express();
 
 app.use(express.urlencoded({extended : false}));
