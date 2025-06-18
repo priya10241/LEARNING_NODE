@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <style>
+        body{
+            background-color: rgb(79, 204, 131);
+            color : black;
+            font-size: large;
+            padding-top : 10px;
+        }
+        button{
+            background-color: rgb(35, 112, 67);
+            color : white;
+            border: 1px solid white;
+            padding : 2px;
+        }
+    </style>
+</head>
+<body>
+    <center>
+    <h1> Welcome to Home Page</h1>
+    <form action="/uploadFile" method="POST" enctype="multipart/form-data">
+        <input type="file" >
+        <button type="submit">Upload</button>
+    </form>
+    </center>
+</body>
+</html>
