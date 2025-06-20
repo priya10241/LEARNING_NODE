@@ -10,19 +10,19 @@ function handleGetUserSignUp(res, res){
 async function handleUserSignUp(req, res) {
     const {fullName, email, password} = req.body;
     await User.create({fullName, email, password});
-    res.redirect("/");
+    return res.redirect("/");
 }
 
 async function handleUserSignIn(req, res) {
     const {email, password} = req.body;
     try{
-        const user = await User.matchPassword(email, password);
-        // console.log(user);
-        res.redirect("/");
+        const token = await User.matchPassword(email, password);
+        res.cookie('token', token);
+        return res.redirect("/");
     }
     catch(error){
         console.log(error);
-        res.render("signin", {message : error});
+        return res.render("signin", {message : error});
     }
 
 }
