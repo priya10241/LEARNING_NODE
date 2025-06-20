@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+    <%-  include('./partials/heads') %>
+    <style>
+        body{
+            background-color: #546d8a;
+            color:azure;
+            font-size: large;
+        }
+        input{
+            font-size: large;
+            border: 0.5px solid black;
+        }
+        button{
+            background-color: #1b263b;
+            color: azure;
+            padding : 5px;
+            border : 1px solid azure;
+            border-radius: 10%;
+        }
+        #inner_div{
+            padding : 10px;
+            border-radius: 5%;
+            display: inline-block;
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        form{
+            border: 1px solid white;
+            padding:20px;
+            border-radius:5%;
+            background-color:#2d445e;
+            margin-top:10px;
+        }
+    </style>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+    
+    <div id="inner_div">
+    <center>
+    <form method="post" action="/user/signup" >
+        <h1> Sign up </h1>
+        <br><br>
+        <label>Name: </label>
+        <input type="text" name="fullName">
+        <br><br>
+        <label>Email: </label>
+        <input type="email" name="email">
+        <br><br>
+        <label>Password: </label>
+        <input type="password" name="password">
+        <br><br>
+        <button type="submit">Submit</button>
+    </form>
+    </center>
+    </div>
+    <%- include('./partials/scripts') %>
+</body>
+</html>
