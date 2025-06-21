@@ -21,7 +21,6 @@ async function handleUserSignIn(req, res) {
         return res.redirect("/");
     }
     catch(error){
-        console.log(error);
         return res.render("signin", {message : error});
     }
 

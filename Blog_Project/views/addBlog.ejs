@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Blog Page</title>
+    <%-  include('./partials/heads') %>
+    <style>
+    body{
+            background-color: #546d8a;
+            color:azure;
+            font-size: large;
+        }
+        input{
+            font-size: large;
+            border: 0.5px solid rgb(47, 68, 126);
+            border-radius: 5%;
+        }
+        button{
+            background-color: #1b263b;
+            color: azure;
+            padding : 5px;
+            border : 1px solid azure;
+            border-radius: 10%;
+        }
+        #inner_div{
+            padding-left : 10px;
+            padding-right : 10px;
+            padding-bottom: 10px;
+            border-radius: 5%;
+            display: inline-block;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        form{
+            border: 1px solid white;
+            padding:20px;
+            border-radius:5%;
+            background-color:#2d445e;
+            margin-top:10px;
+        }
+        </style>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+    <br>
+    <center>
+    <h2>Add Blog</h2>
+    </center>
+    <br><br>
+    <div id="inner_div">
+        <form method="post" action="/blog/addblog" enctype="multipart/form-data">
+            <label for="title">Title: </label>
+            <br>
+            <input style="width: 400px;" type="text" name="title" id="title" >
+            <br><br>
+            <label for="floatingTextarea">Content</label>
+            <textarea style="width: 400px; height: 150px;" class="form-control" placeholder="Add your content" id="floatingTextarea" name="content"></textarea>
+            <br>
+            <label for="coverImage">Cover Image: </label>
+            <input type="file" name="coverImageURL" id="coverImage">
+            <br>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    <%- include('./partials/scripts') %>
+</body>
+</html>

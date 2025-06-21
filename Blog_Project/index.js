@@ -6,6 +6,7 @@ const userRoute = require('./routes/user');
 const mongoose = require('mongoose');
 const {checkForAuthentication} = require('./middlewares/authentication');
 const cookieParser = require('cookie-parser');
+const blogRoute = require('./routes/blog');
 
 //views
 app.set("view engine", "ejs");
@@ -19,15 +20,26 @@ app.use(checkForAuthentication("token"));
 
 
 app.get('/', (req, res)=>{
-    console.log(req.user);
+    // console.log(req.user);
     res.render("home", {"user" : req.user});
 })
 
 //routes
 app.use('/user', userRoute);
+app.use("/blog", blogRoute);
 
 
 //db connection
 mongoose.connect('mongodb://127.0.0.1:27017/blogify').then(()=> console.log("DB Connected"));
 
 app.listen(PORT, ()=> console.log("Server started successfully"));
+
+
+
+
+
+
+
+
+
+//not able to find blog with blog id

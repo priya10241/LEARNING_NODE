@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog Page</title>
+    <%-  include('./partials/heads') %>
+    <style>
+        body{
+            background-color: #546d8a;
+            color:azure;
+            font-size: large;
+        }
+        button{
+            background-color: #1b263b;
+            color: azure;
+            padding : 5px;
+            border : 1px solid azure;
+            border-radius: 10%;
+        }
+        #inner_div{
+            padding : 10px;
+            border-radius: 5%;
+            display: inline-block;
+            margin-top: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+    <%- include('./partials/nav') %>
+    <center>
+    <h1 style="color:aliceblue; font-size :largers"><%= locals.blog.title %> </h1>
+    <br>
+    <br>
+    <div id="inner_div">
+        <p><%= locals.blog.content %></p>
+    </div>
+    <br><br>
+    <img src= <%= locals.blog.coverImageURL %>  alt="coverImage" >
+    </center>
+    <%- include('./partials/scripts') %>
+</body>
+</html>

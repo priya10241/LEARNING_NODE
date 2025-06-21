@@ -6,6 +6,7 @@ function checkForAuthentication(cookieName){
             return next();
         }
         if(!req.cookies[cookieName]){
+            return next();
         }
         const token = req.cookies[cookieName];
         try{

@@ -18,7 +18,6 @@ function createToken(user){
 
 function getUserByToken(token){
     const user = JWT.verify(token, SecretKey);
-    // console.log("User in getUserByToken, ", user);
     return user;
 }
 
