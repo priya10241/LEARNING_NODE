@@ -1,47 +1,50 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog Page</title>
-    <%-  include('./partials/heads') %>
-    <style>
-        body{
-            background-color: #546d8a;
-            color:azure;
-            font-size: large;
-        }
-        button{
-            background-color: #1b263b;
-            color: azure;
-            padding : 5px;
-            border : 1px solid azure;
-            border-radius: 10%;
-        }
-        #inner_div{
-            padding : 10px;
-            border-radius: 5%;
-            display: inline-block;
-            margin-top: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog Page</title>
+  <%- include('./partials/heads') %>
+  <style>
+    body {
+      background-color: #546d8a;
+      color: azure;
+      font-size: large;
+      padding-bottom: 60px; /* space at the bottom */
+    }
+
+    .fixed-img {
+      height: 400px;
+      width: 400px;
+      object-fit: contain;
+    }
+
+    .card-full {
+      max-width: 100%;
+    }
+  </style>
 </head>
 <body>
-    <%- include('./partials/nav') %>
-    <center>
-    <h1 style="color:aliceblue; font-size :largers"><%= locals.blog.title %> </h1>
-    <br>
-    <br>
-    <div id="inner_div">
-        <p><%= locals.blog.content %></p>
+  <%- include('./partials/nav') %>
+
+  <div class="container mt-5">
+    <div class="card card-full" style="background-color: #1b3552;">
+      <div class="row g-0" style="background-color: #1b3552;color:aliceblue">
+        <div class="col-md-5">
+          <img src="<%= locals.blog.coverImageURL %>" class="fixed-img" alt="Card image">
+        </div>
+        <div class="col-md-7 d-flex align-items-center">
+          <div class="card-body">
+            <h3 class="card-title"><%= locals.blog.title %></h3>
+            <p class="card-text">
+              <%= locals.blog.content %>
+            </p>
+          </div>
+        </div>
+      </div>
     </div>
-    <br><br>
-    <img src= "<%= locals.blog.coverImageURL %>" alt="coverImage" height="100px" width="200px" >
-    </center>
-    <%- include('./partials/scripts') %>
+  </div>
+
+  <%- include('./partials/scripts') %>
 </body>
 </html>
-

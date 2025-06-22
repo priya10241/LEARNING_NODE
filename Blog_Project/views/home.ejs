@@ -4,28 +4,47 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
-    <%-  include('./partials/heads') %>
     <style>
-        body{
-            background-color: #546d8a;
+        #body_id{
+            background-color: #4f6885;
             color:azure;
-            font-size: large;
+        }
+        .card-container {
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+            margin-top: 20px;
+        }
+        .card-img-top {
+            height: 300px;
+            width:200px;
+        }
+        #inner_container{
+            background-color: #1b3552;
+            color: antiquewhite;
         }
     </style>
+    <%- include('./partials/heads') %>
 </head>
-<body>
+<body id="body_id">
     <%- include('./partials/nav') %>
-    <div class="container mt-3">
-    <% locals.allBlogs.forEach(blog=> { %>
-        <div class="card" style="width: 18rem;">
-        <h2><%= blog.title %></h2>
-        <img src="<%= blog.coverImageURL %>" class="card-img-top" alt="coverImage">
-        <div class="card-body">
-            <p class="card-text"><%= blog.content %> </p>
-        </div>
-        </div>
-    <% }) %>
+    
+    <div class="card-container">
+    <% if (locals.allBlogs) { %>
+        <% locals.allBlogs.forEach(blog => { %>
+            <div class="card" id="inner_container">
+                <img src="<%= blog.coverImageURL %>" class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title"><%= blog.title %></h5>
+                    <p class="card-text"><%= blog.content %></p>
+                </div>
+            </div>
+        <% }) %>
+    <% } %>
     </div>
+
     <%- include('./partials/scripts') %>
 </body>
 </html>

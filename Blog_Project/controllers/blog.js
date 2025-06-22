@@ -19,7 +19,7 @@ async function handlePostAddBlog(req, res){
 async function handleGetBlogWithId(req, res){
     const blogId = req.params.id;
     const blogWithId = await Blog.findById(`${blogId}`);
-    res.render("getBlog", {"blog" : blogWithId});
+    res.render("getBlog", {"blog" : blogWithId, "user" : req.user});
 }
 
 
