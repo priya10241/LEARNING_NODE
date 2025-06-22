@@ -7,6 +7,7 @@ const mongoose = require('mongoose');
 const {checkForAuthentication} = require('./middlewares/authentication');
 const cookieParser = require('cookie-parser');
 const blogRoute = require('./routes/blog');
+const staticRoute = require('./routes/staticRouter');
 
 //views
 app.set("view engine", "ejs");
@@ -17,14 +18,11 @@ app.use(express.json());
 app.use(express.urlencoded({extended : false}));
 app.use(cookieParser());
 app.use(checkForAuthentication("token"));
+app.use(express.static(path.resolve('./public')));
 
-
-app.get('/', (req, res)=>{
-    // console.log(req.user);
-    res.render("home", {"user" : req.user});
-})
 
 //routes
+app.use('/', staticRoute);
 app.use('/user', userRoute);
 app.use("/blog", blogRoute);
 

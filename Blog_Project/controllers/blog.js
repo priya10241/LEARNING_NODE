@@ -12,15 +12,13 @@ async function handlePostAddBlog(req, res){
         createdBy : req.user._id,
         coverImageURL : `/uploads/${req.file.filename}`
     })
-
     return res.redirect(`/blog/${result._id}`);
 }
 
 
 async function handleGetBlogWithId(req, res){
     const blogId = req.params.id;
-    const blogWithId = Blog.findById(blogId);
-    console.log("Blog With Id: " ,blogWithId.title);
+    const blogWithId = await Blog.findById(`${blogId}`);
     res.render("getBlog", {"blog" : blogWithId});
 }
 

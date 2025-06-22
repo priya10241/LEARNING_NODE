@@ -15,6 +15,17 @@
 </head>
 <body>
     <%- include('./partials/nav') %>
+    <div class="container mt-3">
+    <% locals.allBlogs.forEach(blog=> { %>
+        <div class="card" style="width: 18rem;">
+        <h2><%= blog.title %></h2>
+        <img src="<%= blog.coverImageURL %>" class="card-img-top" alt="coverImage">
+        <div class="card-body">
+            <p class="card-text"><%= blog.content %> </p>
+        </div>
+        </div>
+    <% }) %>
+    </div>
     <%- include('./partials/scripts') %>
 </body>
 </html>

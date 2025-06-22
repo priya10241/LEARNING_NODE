@@ -39,8 +39,9 @@
         <p><%= locals.blog.content %></p>
     </div>
     <br><br>
-    <img src= <%= locals.blog.coverImageURL %>  alt="coverImage" >
+    <img src= "<%= locals.blog.coverImageURL %>" alt="coverImage" height="100px" width="200px" >
     </center>
     <%- include('./partials/scripts') %>
 </body>
 </html>
+
