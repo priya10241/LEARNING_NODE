@@ -23,6 +23,10 @@ async function handleUserSignIn(req, res) {
     catch(error){
         return res.render("signin", {message : error});
     }
-
 }
-module.exports = {handleGetUserSignIn, handleGetUserSignUp, handleUserSignUp, handleUserSignIn};
+
+async function handleUserLogout(req, res){
+    res.clearCookie('token');
+    return res.redirect("/");
+}
+module.exports = {handleGetUserSignIn, handleGetUserSignUp, handleUserSignUp, handleUserSignIn, handleUserLogout};

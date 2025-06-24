@@ -22,27 +22,58 @@
     .card-full {
       max-width: 100%;
     }
+
+    #outer_div{
+      width : 100%;
+    }
   </style>
 </head>
 <body>
   <%- include('./partials/nav') %>
 
   <div class="container mt-5">
-    <div class="card card-full" style="background-color: #1b3552;">
-      <div class="row g-0" style="background-color: #1b3552;color:aliceblue">
-        <div class="col-md-5">
-          <img src="<%= locals.blog.coverImageURL %>" class="fixed-img" alt="Card image">
-        </div>
-        <div class="col-md-7 d-flex align-items-center">
-          <div class="card-body">
-            <h3 class="card-title"><%= locals.blog.title %></h3>
-            <p class="card-text">
-              <%= locals.blog.content %>
-            </p>
-          </div>
-        </div>
+    <div class="card card-full position-relative">
+  <div class="row g-0" style="background-color: #1b3552; color: aliceblue;">
+    <div class="col-md-5" style="background-color: #1b3552;">
+      <img src="<%= locals.blog.coverImageURL %>" class="fixed-img" alt="Card image">
+    </div>
+    <div class="col-md-5 d-flex align-items-center">
+      <div class="card-body pb-5" style="background-color: #1b3552;">
+        <h3 class="card-title"><%= locals.blog.title %></h3>
+        <pre class="card-text" style="white-space: pre-wrap;">
+<%= locals.blog.content %>
+        </pre>
       </div>
     </div>
+  </div>
+  <div style="position: absolute; bottom: 10px; right: 10px; display: flex; align-items: center; background-color: #1b3552;">
+    <img src="<%= locals.blog.createdBy.profileImageURL %>" width="40px" height="40px" style="border-radius: 50%; margin-right: 8px;">
+    <pre class="text-white mb-0" style="font-style: italic; white-space: pre-wrap;"><%= locals.blog.createdBy.fullName %></pre>
+  </div>
+</div>
+
+
+    <div class="mt-5">
+        <% if (locals.user) { %>
+        <form method="post" action="/blog/addComment/<%= locals.blog._id %>">
+          <input type="text" name="content" placeholder="Add your comment">
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>    
+        <% } %>
+      </div>
+
+      <div class="mt-3 ">
+        <h1 style="color:#032750">Comments ( <%= locals.allComments.length %> )</h1>
+        <div style="padding-left : 5px">
+        <% locals.allComments.forEach(comment => { %>
+              <div style="display:flexbox; flex-direction:row; justify-content:space-between">
+                <div><img src="<%= comment.createdBy.profileImageURL %> " width="30px" height="30px" style="display:inline-block">
+                <p style="display:inline-block"><%= comment.createdBy.fullName %></p></div>
+              </div>
+                <div><pre style="background-color: #b1bdca;color:#183250;padding:3px; display : inline-block; width:400px; border-radius:2%"><%= comment.content %></pre></div>
+        <% }) %>
+        </div>
+      </div>
   </div>
 
   <%- include('./partials/scripts') %>

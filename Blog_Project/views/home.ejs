@@ -5,23 +5,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home Page</title>
     <style>
-        #body_id{
+        #body_id {
             background-color: #4f6885;
-            color:azure;
+            color: azure;
         }
         .card-container {
             display: flex;
-            flex-direction: row;
+            flex-wrap: wrap; /* Added */
             gap: 20px;
-            max-width: 600px;
+            justify-content: center; /* Optional, centers rows */
+            max-width: 1200px; /* Optional: allow more cards */
             margin: 0 auto;
             margin-top: 20px;
         }
+        .card {
+            width: 18rem; /* Consistent card width */
+            background-color: #fff; /* Optional for visibility */
+            border-radius: 8px;
+            overflow: hidden;
+        }
         .card-img-top {
             height: 300px;
-            width:200px;
+            width: 100%; /* Ensures it fits the card */
+            object-fit: cover;
         }
-        #inner_container{
+        #inner_container {
             background-color: #1b3552;
             color: antiquewhite;
         }
@@ -34,11 +42,11 @@
     <div class="card-container">
     <% if (locals.allBlogs) { %>
         <% locals.allBlogs.forEach(blog => { %>
-            <div class="card" id="inner_container">
+            <div class="card">
                 <img src="<%= blog.coverImageURL %>" class="card-img-top" alt="...">
                 <div class="card-body">
                     <h5 class="card-title"><%= blog.title %></h5>
-                    <p class="card-text"><%= blog.content %></p>
+                    <a href="/blog/<%= blog._id %>" class="btn btn-primary">View</a>
                 </div>
             </div>
         <% }) %>
