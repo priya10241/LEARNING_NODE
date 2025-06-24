@@ -35,4 +35,12 @@ async function handlePostComment(req, res){
     return res.redirect(`/blog/${blogId}`);
 }
 
-module.exports = {handlePostAddBlog, handlegetAddBlog, handleGetBlogWithId, handlePostComment};
+async function handleDeleteComment(req, res){
+    const commentId = req.params.commentId;
+    const comment = await Comment.findById(commentId);
+    const blogId = comment.blogId;
+    await Comment.findByIdAndDelete(commentId);
+    return res.redirect(`/blog/${blogId}`);
+}
+
+module.exports = {handlePostAddBlog, handlegetAddBlog, handleGetBlogWithId, handlePostComment, handleDeleteComment};

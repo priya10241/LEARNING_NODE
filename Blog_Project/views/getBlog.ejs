@@ -62,18 +62,32 @@
         <% } %>
       </div>
 
-      <div class="mt-3 ">
-        <h1 style="color:#032750">Comments ( <%= locals.allComments.length %> )</h1>
-        <div style="padding-left : 5px">
-        <% locals.allComments.forEach(comment => { %>
-              <div style="display:flexbox; flex-direction:row; justify-content:space-between">
-                <div><img src="<%= comment.createdBy.profileImageURL %> " width="30px" height="30px" style="display:inline-block">
-                <p style="display:inline-block"><%= comment.createdBy.fullName %></p></div>
-              </div>
-                <div><pre style="background-color: #b1bdca;color:#183250;padding:3px; display : inline-block; width:400px; border-radius:2%"><%= comment.content %></pre></div>
-        <% }) %>
+    <div class="mt-3">
+  <h1 style="color:#032750">Comments ( <%= locals.allComments.length %> )</h1>
+  <div style="padding-left: 5px;">
+    <% locals.allComments.forEach(comment => { %>
+      <div style="margin-bottom: 20px;"> 
+        
+          <div style="display: flex; align-items: center; gap: 5px; margin-bottom: 5px;">
+            <img src="<%= comment.createdBy.profileImageURL %>" width="30px" height="30px" style="border-radius: 50%;">
+            <p style="margin: 0; color: #032750;"><%= comment.createdBy.fullName %></p>
+          </div>
+
+          <div style="display: flex; align-items: center; gap: 10px;">
+            <pre style="background-color: #b1bdca; color: #183250; padding: 6px 12px; border-radius: 6px; margin: 0; white-space: pre-wrap; max-width: 400px;"><%= comment.content %></pre>
+            <% if (locals.user && comment.createdBy._id == locals.user._id) { %>
+              <form action="/blog/deleteComment/<%= comment._id %>" method="POST">
+                <button type="submit" class="btn btn-sm btn-danger"><i class="bi bi-trash"></i></button>
+              </form>
+            <% } %>
+          </div>
+          
         </div>
-      </div>
+      <% }) %>
+    </div>
+  </div>
+
+
   </div>
 
   <%- include('./partials/scripts') %>
