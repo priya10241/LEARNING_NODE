@@ -1,13 +1,16 @@
 const express = require("express");
 const path = require("path");
 const app = express();
-const PORT = 8000;
 const userRoute = require('./routes/user');
 const mongoose = require('mongoose');
 const {checkForAuthentication} = require('./middlewares/authentication');
 const cookieParser = require('cookie-parser');
 const blogRoute = require('./routes/blog');
 const staticRoute = require('./routes/staticRouter');
+require('dotenv').config();
+
+//port
+const PORT = process.env.PORT || 8000;
 
 //views
 app.set("view engine", "ejs");
@@ -28,9 +31,13 @@ app.use("/blog", blogRoute);
 
 
 //db connection
-mongoose.connect('mongodb://127.0.0.1:27017/blogify').then(()=> console.log("DB Connected"));
+mongoose.connect(process.env.MONGO_URL).then(()=> console.log("DB Connected"));
 
-app.listen(PORT, ()=> console.log("Server started successfully"));
+app.listen(PORT, ()=> console.log(`Server started successfully at PORT : ${PORT}`));
+
+
+
+
 
 
 
