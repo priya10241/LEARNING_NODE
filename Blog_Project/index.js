@@ -30,6 +30,7 @@ app.use("/blog", blogRoute);
 //db connection
 mongoose.connect('mongodb://127.0.0.1:27017/blogify').then(()=> console.log("DB Connected"));
 
+//connect server
 app.listen(PORT, ()=> console.log("Server started successfully"));
 
 
